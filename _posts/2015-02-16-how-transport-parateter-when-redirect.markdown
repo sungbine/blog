@@ -9,18 +9,19 @@ categories: Spring
 
 다음은 RedirectAttributes를 이용한 리다이렉트시 값전달 예제이다. 
 
-{code:title:From}
+<code>
 @RequestMapping(“/test/redirectFrom")
 public String testFrom(RedirectAttributes redirectAttributes) {
 	redirectAttributes.addAttribute(“testParameter", testParameter);
 	return "redirect:/test/redirectTo";
 }
-{code}
+</code>
 
-{code:title:To}
+<code>
 @RequestMapping(“/test/redirectTo")
 public String testTo(@RequestParam(“testParameter”) testParameter) {
   System.out.println(testParameter);
   return "/test/testPage";
 }
-{code}
+</code>
+
