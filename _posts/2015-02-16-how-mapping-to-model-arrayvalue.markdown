@@ -119,6 +119,7 @@ public String getMultiRowToModel(@ModelAttribute MultiRowTarget targets) {
 ( 물론, 이것을 작성할 때 꽤 고생했고 잘돌아가는것을 확인했기에 더이상 건드리지 않았다. )
 
 일반적인 ModelAttribute를 이용하는 형태에서 추가적으로 해야할 사항을 다시 되짚어보면
+
 - 해당 모델의 리스트형태를 가진 전용 모델 객체를 만든다. 
  
 ```java 
