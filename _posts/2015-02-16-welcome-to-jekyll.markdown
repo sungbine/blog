@@ -1,25 +1,25 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "리다이렉트(redirect)시 값(parameter) 전달"
 date:   2015-02-16 10:09:36
-categories: jekyll update
+categories: Spring
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+리다이렉트 할 때 파라미터 전달이 필요한 경우가 생긴다.
+당연히 있을거라고 생각하고 찾아보았는데 역시나 있었다.
 
-Jekyll also offers powerful support for code snippets:
+다음은 RedirectAttributes를 이용한 리다이렉트시 값전달 예제이다. 
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+[ 호출하는 쪽 ]
+@RequestMapping(“/test/redirectFrom")
+public String testRedirectAttributes(RedirectAttributes redirectAttributes) {
+	redirectAttributes.addAttribute(“testParameter", testParameter);
+	return "redirect:/test/redirectTo";
+}
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
-
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+[ 호출되는 쪽 ]
+@RequestMapping(“/test/redirectTo")
+public String testRedirectAttributes(@RequestParam(“testParameter”) testParameter) {
+  System.out.println(testParameter);
+  return "/test/testPage";
+}
