@@ -20,8 +20,8 @@ public String testFrom(RedirectAttributes redirectAttributes) {
 <code>
 @RequestMapping(“/test/redirectTo")
 public String testTo(@RequestParam(“testParameter”) testParameter) {
-  System.out.println(testParameter);
-  return "/test/testPage";
+	System.out.println(testParameter);
+	return "/test/testPage";
 }
 </code>
 
