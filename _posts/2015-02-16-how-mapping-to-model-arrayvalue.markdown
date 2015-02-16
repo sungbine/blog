@@ -12,7 +12,8 @@ categories: Spring
 - 그렇다면, 하나의 객체에 맵핑되는게 아닌 배열의 형태 혹은 리스트의 형태로 여러줄을 맵핑시킬때는 어떻게 해야할까?
 
 아래와 같이 같은 형태로 연속된 값이 있다고 하자.
-```java
+
+```javascript
 <form>
 <table>
     <tr>
@@ -117,9 +118,13 @@ public String getMultiRowToModel(@ModelAttribute MultiRowTarget targets) {
 생각보다 심플하지 않지만 난 아직 이것보다 심플한 방법을 찾지 못했다.
 ( 물론, 이것을 작성할 때 꽤 고생했고 잘돌아가는것을 확인했기에 더이상 건드리지 않았다. )
 
-추가적으로 해야할 사항을 다시 되짚어보면
+일반적인 ModelAttribute를 이용하는 형태에서 추가적으로 해야할 사항을 다시 되짚어보면
 - 해당 모델의 리스트형태를 가진 전용 모델 객체를 만든다. 
--- MultiRowTarget
+```java 
+public class MultiRowTarget 
+```
 - 넘어올 데이터의 이름을 리스트의 이름과 인덱스로 맞춰춘다.
--- <input name="targets[0].targetName" />
-
+```javascript 
+<input name="targets[0].targetName" />
+```
+- 저 값들을 넘겨준다. 어떻게든 Anyway.
