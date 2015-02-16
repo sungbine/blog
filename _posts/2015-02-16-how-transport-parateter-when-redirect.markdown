@@ -11,7 +11,7 @@ categories: Spring
 
 ```java
 @RequestMapping("/test/redirectFrom") 
-    public String testFrom(RedirectAttributes redirectAttributes) {
+public String testFrom(RedirectAttributes redirectAttributes) {
         redirectAttributes.addAttribute(“testParameter", testParameter);
     return "redirect:/test/redirectTo";
 }
