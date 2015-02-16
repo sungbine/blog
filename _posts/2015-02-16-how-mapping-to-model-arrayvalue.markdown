@@ -45,7 +45,7 @@ public class Target {
 }
 ```
 
-그리고 RequestMapping 메서드를 작성할 것이다.
+그리고 컨트롤러 클래스에서 다음과 같은 메서드를 작성할 것이다.
 
 ```java
 @RequestMapping(value = "/test/modelMap/")
@@ -76,6 +76,50 @@ public class MultiRowTarget {
 
 ```java
 <tr>
-    <td><input /></td>
+    <td><input type="text" name="targets[0].targetId" id="targets[0].targetId"/></td>
+    <td><input type="text" name="targets[0].targetName" id="targets[0].targetName"/></td>
+</tr>
+<tr>
+    <td><input type="text" name="targets[1].targetId" id="targets[1].targetId"/></td>
+    <td><input type="text" name="targets[1].targetName" id="targets[1].targetName"/></td>
 </tr>
 ```
+
+물론, HTML 페이지에서 삽입/삭제 될 때마다 테이블의 로우를 계산해서 
+연결리스트 처럼 index를 먹인다는건 쉬운일이 아니다.
+
+나는 form.submit 을 하거나 Ajax를 통해서 전송할 시 그때 다음과 같은 함수를 작성해서 해결했다.
+
+```javascript
+function renameForModelAttribute() {
+    $("#form").each( function (index) {
+        $(this).find("input[name=targetId]").attr("name", "targets[" + index + "].targetId");
+        $(this).find("input[name=targetName]").attr("name", "targets[" + index + "].targetName");
+    }
+}
+```
+
+이 함수를 이용하면 서버로 데이터로 전송할때 이름이 바뀌어서 전달하게 된다.
+이 바뀐 양식의 모델을 받기 위해서는 아까 작성한 컨트롤러 메서드로 변경해야 한다.
+생각나는대로 쓰고 있어서 두서가 없는점 양해 바란다.
+
+```java
+@RequestMapping(value = "/test/modelMap/")
+public String getMultiRowToModel(@ModelAttribute MultiRowTarget targets) {
+    ...
+}
+```
+
+이러면 이 메서드는 넘어온 값을 targets[0].targetName 을 MultiRowTarget.targets[0].targetName에 집어넣게 된다. 
+따라서 넘어온 모든줄의 데이터는 MultiRowTarget 객체의 targets 안에 들어가 있게된다.
+
+자 모두 끝났다.
+생각보다 심플하지 않지만 난 아직 이것보다 심플한 방법을 찾지 못했다.
+( 물론, 이것을 작성할 때 꽤 고생했고 잘돌아가는것을 확인했기에 더이상 건드리지 않았다. )
+
+추가적으로 해야할 사항을 다시 되짚어보면
+- 해당 모델의 리스트형태를 가진 전용 모델 객체를 만든다. 
+-- MultiRowTarget
+- 넘어올 데이터의 이름을 리스트의 이름과 인덱스로 맞춰춘다.
+-- <input name="targets[0].targetName" />
+
