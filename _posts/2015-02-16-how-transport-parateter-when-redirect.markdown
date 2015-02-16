@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "리다이렉트(redirect)시 값(parameter) 전달"
+title:  "Spring - 리다이렉트(redirect)시 값(parameter) 전달"
 categories: Spring
 ---
 
