@@ -10,7 +10,7 @@ categories: Spring
 다음은 RedirectAttributes를 이용한 리다이렉트시 값전달 예제이다. 
 
 ```java
-    @RequestMapping(“/test/redirectFrom") <br>
+    @RequestMapping(“/test/redirectFrom") 
     public String testFrom(RedirectAttributes redirectAttributes) {
         redirectAttributes.addAttribute(“testParameter", testParameter);
         return "redirect:/test/redirectTo";
