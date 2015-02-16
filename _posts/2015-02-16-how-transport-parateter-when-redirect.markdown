@@ -12,14 +12,14 @@ categories: Spring
 ```java
 @RequestMapping("/test/redirectFrom") 
 public String testFrom(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addAttribute("testParameter", testParameter);
+    redirectAttributes.addAttribute("testParameter", testParameter);
     return "redirect:/test/redirectTo";
 }
 ```
 ```java
 @RequestMapping("/test/redirectTo")
 public String testTo(@RequestParam("testParameter") testParameter) {
-        System.out.println(testParameter);
+    System.out.println(testParameter);
     return "/test/testPage";
 }
 ```
