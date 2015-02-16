@@ -11,4 +11,4 @@ github_username: noveloper
 
 # Build settings
 markdown: kramdown
-baseurl : ""
+baseurl : "/blog"
