@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "리다이렉트(redirect)시 값(parameter) 전달"
-date:   2015-02-16 10:09:36
 categories: Spring
 ---
 
