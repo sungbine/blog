@@ -13,7 +13,7 @@ categories: Spring
 
 아래와 같이 같은 형태로 연속된 값이 있다고 하자.
 
-```javascript
+```html
 <form>
 <table>
     <tr>
@@ -120,11 +120,14 @@ public String getMultiRowToModel(@ModelAttribute MultiRowTarget targets) {
 
 일반적인 ModelAttribute를 이용하는 형태에서 추가적으로 해야할 사항을 다시 되짚어보면
 - 해당 모델의 리스트형태를 가진 전용 모델 객체를 만든다. 
+ 
 ```java 
 public class MultiRowTarget 
 ```
 - 넘어올 데이터의 이름을 리스트의 이름과 인덱스로 맞춰춘다.
-```javascript 
+
+```html
 <input name="targets[0].targetName" />
 ```
+
 - 저 값들을 넘겨준다. 어떻게든 Anyway.
