@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "DB - INSERT INTO SELECT"
-categories: Spring
+categories: Database
 ---
 
 <h3>개요</h3>
